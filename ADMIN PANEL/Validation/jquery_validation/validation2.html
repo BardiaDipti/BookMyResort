@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- <script src="js/jquery.js"></script> -->
+    <script src="js/jquery-3.1.1.js"></script>    
+	<script src="js/jquery.validate.js"></script>
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Register</h3>
+
+    <form action="#" id="myform" method="post" enctype="multipart/form-data">
+        Name:<input type="text" name="user_name" onkeyup ="Validatestring(this)" placeholder="Enter Name" required>
+        <br><br>
+        Email:<input type="text" name="user_email" placeholder="Enter Email" required>
+        <br><br>
+        Mobile:<input type="text" name="user_mobile" maxlength="10" onkeyup ="Validate(this)" placeholder="Enter Mobile No" required>
+        <br><br>
+        Semester:<select name="user_sem" required>
+            <option value="">Select</option>
+            <option value="Sem 1">Sem 1</option>
+            <option value="Sem 2">Sem 2</option>
+            <option value="Sem 3">Sem 3</option>
+    
+        </select>
+        <br><br>
+        Gender:
+        Male:<input type="radio" name="gender" value="Male">
+        Female:<input type="radio" name="gender" value="Female">   
+        <br><br>
+        Image:<input type="file" name="file"  accept="image/*"  required>
+        
+        <br><br>
+        Website URL:<input type="text" name="website" placeholder="Enter Website URL" required>
+    <br><br>
+    Message:<textarea name="message" placeholder="Enter Message" required></textarea>
+    <br><br>
+        Password:<input type="password"  id="user_password"  name="user_password" placeholder="Enter Password" required>
+    <br><br>
+    Confirm Password:<input type="password"  id="confirm_password"  name="confirm_password" placeholder="Enter Confirm Password" required>
+    <br><br>
+    I Agree Terms & Coditions<input type="checkbox" id="agree" name="agree" required>
+    <br><br>
+	<input class="submit" type="submit" value="Submit">
+     </form>   
+     <script>
+         // validate signup form on keyup and submit
+		$("#myform").validate({
+			rules: {
+				
+				user_name: {
+					required: true,
+					minlength: 3
+				},
+				user_password: {
+					required: true,
+					minlength: 6
+				},
+				confirm_password: {
+					required: true,
+					minlength: 6,
+					equalTo: "#user_password"
+				},
+				user_email: {
+					required: true,
+					email: true
+				},
+                website: {
+					required: true,
+					url: true
+				},
+                user_mobile: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 10
+                        },
+                        gender:"required",
+                        agree: "required",
+                        message: "required",
+                        file: "required",
+                        
+                        
+			},
+			messages: {
+				
+				user_name: {
+					required: "Please Enter Name",
+					minlength: "Your name must consist of at least 3 characters"
+				},
+                user_mobile: {
+                            required: "Please Enter Your Mobile no.",
+                            minlength: "Enter Your 10 digit Mobile no. only",
+                            maxlength: "Enter Your 10 digit Mobile no. only",
+                        },
+                        website: {
+					required: "Please Enter Website URL",
+					url: "Please Enter Valid URL"
+				},
+                        
+				user_password: {
+					required: "Please Enter Password",
+					minlength: "Your password must be at least 6 characters long"
+				},
+				confirm_password: {
+					required: "Please Confirm Password",
+					minlength: "Your password must be at least 6 characters long",
+					equalTo: "Please enter the same password as above"
+				},
+				user_email: "Please enter a valid email address",
+                
+                gender: "Please Select Gender",
+				agree: "Please accept our policy",
+                message: "Please Enter Message",
+                user_sem: "Please Select Semester",
+                file: "Please Select Image",
+       
+				
+			}
+		});
+
+
+        function Validate(no) {
+                   no.value = no.value.replace(/[^ 0-9\n\r]+/g, '');
+               }
+               
+               function Validatestring(no) {
+                   no.value = no.value.replace(/[^ a-z A-Z\n\r]+/g, '');
+               }
+
+              
+      
+     </script>
+</body>
+</html>
